@@ -24,7 +24,7 @@ public class DIYArrayList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return elements.length == 0;
+        return size == 0;
     }
 
     @Override
