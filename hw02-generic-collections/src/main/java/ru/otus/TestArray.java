@@ -22,14 +22,14 @@ public class TestArray {
 
         List<Integer> test2 = new DIYArrayList<>(sourceList2);
         Collections.copy(test2, test);
-        System.out.println("test \"Collections.copy\": ");
+        System.out.println("------------\n\ntest \"Collections.copy\": ");
         for (Integer num : test2) {
             System.out.println(num);
         }
 
 
         Collections.sort(test2, Integer::compare);
-        System.out.println("test \"Collections.sort\": ");
+        System.out.println("------------\n\ntest \"Collections.sort\": ");
         for (Integer num : test2) {
             System.out.println(num);
         }

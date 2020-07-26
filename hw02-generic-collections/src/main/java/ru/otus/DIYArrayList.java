@@ -4,12 +4,14 @@ import java.util.*;
 
 public class DIYArrayList<E> implements List<E> {
 
+    private static final int DEFAULT_CAPACITY = 10;
+
     private Object[] elements;
 
     private int size = 0;
 
     public DIYArrayList() {
-        elements = new Object[0];
+        elements = new Object[DEFAULT_CAPACITY];
     }
 
     public DIYArrayList(Collection<? extends E> collection) {
@@ -39,7 +41,7 @@ public class DIYArrayList<E> implements List<E> {
 
     @Override
     public Object[] toArray() {
-        return Arrays.copyOf(elements, size());
+        return Arrays.copyOf(elements, size);
     }
 
     @Override
@@ -58,10 +60,7 @@ public class DIYArrayList<E> implements List<E> {
         if (e == null) {
             throw new NullPointerException();
         }
-        int insertIndex = elements.length;
-        elements = grow();
-        elements[insertIndex] = e;
-        size++;
+        add(e, size);
         return true;
     }
 
@@ -103,13 +102,14 @@ public class DIYArrayList<E> implements List<E> {
     @Override
     @SuppressWarnings("unchecked")
     public E get(int index) {
-        Objects.checkIndex(index, size());
+        Objects.checkIndex(index, size);
         return (E) elements[index];
+
     }
 
     @Override
     public E set(int index, E element) {
-        Objects.checkIndex(index, size());
+        Objects.checkIndex(index, size);
         E oldValue = get(index);
         elements[index] = element;
         return oldValue;
@@ -135,17 +135,6 @@ public class DIYArrayList<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
-    private Object[] grow() {
-        return grow(elements.length + 1);
-    }
-
-    private Object[] grow(int newCapacity) {
-        if (newCapacity <= elements.length) {
-            throw new IllegalArgumentException();
-        }
-        return elements = Arrays.copyOf(elements, newCapacity);
-    }
-
     @Override
     public ListIterator<E> listIterator() {
         return new ListItr();
@@ -161,79 +150,90 @@ public class DIYArrayList<E> implements List<E> {
         throw new UnsupportedOperationException();
     }
 
+    private void add(E e, int insertIndex) {
+        if (insertIndex >= elements.length) {
+            elements = grow(insertIndex);
+        }
+        elements[insertIndex] = e;
+        size++;
+    }
+
+    private Object[] grow() {
+        return grow(size + 1);
+    }
+
+    private Object[] grow(int minCapacity) {
+        int oldCapacity = elements.length;
+        if (oldCapacity > 0) {
+            int newCapacity = ArraysSupport.newLength(oldCapacity,
+                    minCapacity - oldCapacity,
+                    oldCapacity >> 1);
+            return elements = Arrays.copyOf(elements, newCapacity);
+        } else {
+            return elements = new Object[Math.max(DEFAULT_CAPACITY, minCapacity)];
+        }
+    }
+
     private class Itr implements Iterator<E> {
 
         /**
          * index current position
          */
-        private int cursor = -1;
+        int cursor = -1;
 
         /**
          * index last returned element
          */
-        private int lastRet = -1;
+        int lastRet = -1;
 
         @Override
         public boolean hasNext() {
-            return (getCursor() + 1) != size();
+            return (cursor + 1) != size;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public E next() {
-            final int newIndex = getCursor() + 1;
-            if (getCursor() >= size()) {
+            final int newIndex = cursor + 1;
+            if (cursor >= size) {
                 throw new NoSuchElementException();
             }
-            E e = get(newIndex);
-            setCursor(newIndex);
-            setLastRet(newIndex);
+            E e = (E) elements[newIndex];
+            cursor = newIndex;
+            lastRet = newIndex;
             return e;
         }
-
-        final protected int getCursor() {
-            return cursor;
-        }
-
-        final protected void setCursor(int cursor) {
-            this.cursor = cursor;
-        }
-
-        final protected int getLastRet() {
-            return lastRet;
-        }
-
-        final protected void setLastRet(int lastRet) {
-            this.lastRet = lastRet;
-        }
+        
     }
 
     private class ListItr extends Itr implements ListIterator<E> {
 
         @Override
         public boolean hasPrevious() {
-            return (getCursor() - 1) >= 0;
+            return (cursor - 1) >= 0;
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public E previous() {
-            final int newIndex = getCursor() - 1;
+            final int newIndex = cursor - 1;
             if (newIndex < 0) {
                 throw new NoSuchElementException();
             }
-            E e = get(newIndex);
-            setCursor(newIndex);
-            setLastRet(newIndex);
+            E e = (E) elements[newIndex];
+            cursor = newIndex;
+            lastRet = newIndex;
             return e;
         }
 
         @Override
         public int nextIndex() {
-            return getCursor() + 1;
+            return cursor + 1;
         }
 
         @Override
         public int previousIndex() {
-            return getCursor() - 1;
+            return cursor - 1;
         }
 
         @Override
@@ -243,10 +243,10 @@ public class DIYArrayList<E> implements List<E> {
 
         @Override
         public void set(E e) {
-            if (getLastRet() < 0) {
+            if (lastRet < 0) {
                 throw new IllegalStateException();
             }
-            DIYArrayList.this.set(getLastRet(), e);
+            elements[lastRet] = e;
         }
 
         @Override
