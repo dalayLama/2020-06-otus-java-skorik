@@ -1,6 +1,6 @@
 package ru.otus;
 
-import ru.otus.exceptions.RunTestsException;
+import ru.otus.testlib.runners.exceptions.RunTestsException;
 import ru.otus.tests.ExampleTest;
 import ru.otus.tests.ExampleTest2;
 

@@ -1,6 +1,6 @@
 package ru.otus.testlib.runners;
 
-import ru.otus.exceptions.RunTestsException;
+import ru.otus.testlib.runners.exceptions.RunTestsException;
 
 public interface TestsRunner {
 

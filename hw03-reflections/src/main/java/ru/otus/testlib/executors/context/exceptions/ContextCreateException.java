@@ -1,4 +1,4 @@
-package ru.otus.exceptions;
+package ru.otus.testlib.executors.context.exceptions;
 
 public class ContextCreateException extends Exception {
 

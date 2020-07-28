@@ -4,7 +4,7 @@ import ru.otus.annotations.After;
 import ru.otus.annotations.Before;
 import ru.otus.annotations.DisplayName;
 import ru.otus.annotations.Test;
-import ru.otus.exceptions.ContextCreateException;
+import ru.otus.testlib.executors.context.exceptions.ContextCreateException;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

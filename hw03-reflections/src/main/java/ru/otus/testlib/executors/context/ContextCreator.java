@@ -1,6 +1,6 @@
 package ru.otus.testlib.executors.context;
 
-import ru.otus.exceptions.ContextCreateException;
+import ru.otus.testlib.executors.context.exceptions.ContextCreateException;
 
 public interface ContextCreator {
 

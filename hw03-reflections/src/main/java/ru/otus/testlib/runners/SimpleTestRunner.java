@@ -1,9 +1,9 @@
 package ru.otus.testlib.runners;
 
 import ru.otus.testlib.executors.context.TestContext;
-import ru.otus.exceptions.ContextCreateException;
-import ru.otus.exceptions.RunTestsException;
-import ru.otus.exceptions.TestExecuteException;
+import ru.otus.testlib.executors.context.exceptions.ContextCreateException;
+import ru.otus.testlib.runners.exceptions.RunTestsException;
+import ru.otus.testlib.executors.exceptions.TestExecuteException;
 import ru.otus.testlib.TestsResult;
 import ru.otus.testlib.executors.context.ContextCreator;
 import ru.otus.testlib.executors.TestExecutor;

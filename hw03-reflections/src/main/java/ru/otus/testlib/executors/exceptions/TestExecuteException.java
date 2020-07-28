@@ -1,4 +1,4 @@
-package ru.otus.exceptions;
+package ru.otus.testlib.executors.exceptions;
 
 public class TestExecuteException extends Exception {
 

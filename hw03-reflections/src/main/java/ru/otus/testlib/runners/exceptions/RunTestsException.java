@@ -1,4 +1,4 @@
-package ru.otus.exceptions;
+package ru.otus.testlib.runners.exceptions;
 
 public class RunTestsException extends Exception {
 

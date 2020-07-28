@@ -1,6 +1,6 @@
 package ru.otus.testlib.executors;
 
-import ru.otus.exceptions.TestExecuteException;
+import ru.otus.testlib.executors.exceptions.TestExecuteException;
 import ru.otus.testlib.*;
 import ru.otus.testlib.executors.context.InfoMethod;
 import ru.otus.testlib.executors.context.TestContext;
