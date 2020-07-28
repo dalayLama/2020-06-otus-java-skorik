@@ -24,7 +24,10 @@ public class SimpleTestRunner implements TestsRunner {
     }
 
     @Override
-    public void runTests(Class<?> clazz) throws RunTestsException {
+    public void runTests(Class<?> clazz) throws RunTestsException, NullPointerException {
+        if (clazz == null) {
+            throw new NullPointerException();
+        }
         try {
             TestContext context = contextCreator.createContext(clazz);
             TestsResult result = executor.execute(context);
