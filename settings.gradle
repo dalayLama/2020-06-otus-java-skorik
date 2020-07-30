@@ -3,3 +3,4 @@
 rootProject.name = 'Otus'
 include 'hw01-gradle'
 include 'hw02-generic-collections'
+include 'hw03-reflections'
