@@ -7,4 +7,5 @@
 ### Выполненые работы
 hw01-gradle - Проект gradle с модульной структурой<br>
 hw02-generic-collections - DIY ArrayList<br>
-hw03-reflections - Reflection
+hw03-reflections - Reflection<br>
+hw04-gc - Сравнение разных сборщиков мусора
