@@ -1,6 +1,6 @@
 package com.otus.atm.exceptions;
 
-public class TakingOutException extends RuntimeException {
+public class TakingOutException extends AtmAppException {
 
     public TakingOutException() {
     }

@@ -1,6 +1,6 @@
 package com.otus.atm.exceptions;
 
-public class PickingUpException extends RuntimeException {
+public class PickingUpException extends AtmAppException {
 
     public PickingUpException() {
     }
