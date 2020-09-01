@@ -6,10 +6,10 @@ public interface CashBox {
 
     void add(BankBill... bills);
 
-    void add(Collection<? extends BankBill> bills);
+    void add(Collection<BankBill> bills);
 
-    Collection<? extends BankBill> takeAway(Collection<? extends BankBill> bills);
+    Collection<BankBill> takeAway(Collection<BankBill> bills);
 
-    Collection<? extends BankBill> getAll();
+    Collection<BankBill> getAll();
 
 }

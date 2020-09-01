@@ -22,14 +22,14 @@ public class DefaultATM implements ATM {
     }
 
     @Override
-    public void add(Collection<? extends BankBill> bills) {
+    public void add(Collection<BankBill> bills) {
         cashBox.add(bills);
     }
 
     @Override
-    public Collection<? extends BankBill> takeOut(long amount) throws TakingOutException {
+    public Collection<BankBill> takeOut(long amount) throws TakingOutException {
         try {
-            Collection<? extends BankBill> pickedBills = calculator.pickUpBillsForAmount(amount, cashBox.getAll());
+            Collection<BankBill> pickedBills = calculator.pickUpBillsForAmount(amount, cashBox.getAll());
             return cashBox.takeAway(pickedBills);
         } catch (Exception e) {
             throw new TakingOutException(e);

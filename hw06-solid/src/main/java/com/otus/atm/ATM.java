@@ -8,9 +8,9 @@ public interface ATM {
 
     void add(BankBill... bills);
 
-    void add(Collection<? extends BankBill> bills);
+    void add(Collection<BankBill> bills);
 
-    Collection<? extends BankBill> takeOut(long amount) throws TakingOutException;
+    Collection<BankBill> takeOut(long amount) throws TakingOutException;
 
     long getBalance();
 

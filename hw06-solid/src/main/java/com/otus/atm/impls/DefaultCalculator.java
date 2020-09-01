@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 public class DefaultCalculator implements Calculator {
 
     @Override
-    public Collection<? extends BankBill> pickUpBillsForAmount(long amount, Collection<? extends BankBill> bills) {
-        List<? extends BankBill> sorted = bills.stream()
+    public Collection<BankBill> pickUpBillsForAmount(long amount, Collection<BankBill> bills) {
+        List<BankBill> sorted = bills.stream()
                 .sorted(Comparator.comparingInt(BankBill::getValue).reversed())
                 .collect(Collectors.toList());
         List<BankBill> picked = pickUp(amount, sorted);
@@ -31,13 +31,13 @@ public class DefaultCalculator implements Calculator {
     }
 
     @Override
-    public long sum(Collection<? extends BankBill> bills) {
+    public long sum(Collection<BankBill> bills) {
         return bills.stream()
                 .mapToInt(BankBill::getValue)
                 .sum();
     }
 
-    private List<BankBill> pickUp(long amount, Collection<? extends BankBill> bills) {
+    private List<BankBill> pickUp(long amount, Collection<BankBill> bills) {
         List<BankBill> picked = new ArrayList<>();
         long sum = 0;
         for (BankBill bill : bills) {

@@ -6,8 +6,8 @@ import java.util.Collection;
 
 public interface Calculator {
 
-    Collection<? extends BankBill> pickUpBillsForAmount(long amount, Collection<? extends BankBill> bills) throws PickingUpException;
+    Collection<BankBill> pickUpBillsForAmount(long amount, Collection<BankBill> bills) throws PickingUpException;
 
-    long sum(Collection<? extends BankBill> bills);
+    long sum(Collection<BankBill> bills);
 
 }

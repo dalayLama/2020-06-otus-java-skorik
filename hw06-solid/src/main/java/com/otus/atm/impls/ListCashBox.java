@@ -15,12 +15,12 @@ public class ListCashBox implements CashBox {
     }
 
     @Override
-    public void add(Collection<? extends BankBill> bills) {
+    public void add(Collection<BankBill> bills) {
         this.bills.addAll(bills);
     }
 
     @Override
-    public Collection<? extends BankBill> takeAway(Collection<? extends BankBill> bills) {
+    public Collection<BankBill> takeAway(Collection<BankBill> bills) {
         List<BankBill> removedBills = new ArrayList<>(bills.size());
         bills.forEach(b -> {
             if (this.bills.contains(b)) {
@@ -34,7 +34,7 @@ public class ListCashBox implements CashBox {
     }
 
     @Override
-    public Collection<? extends BankBill> getAll() {
+    public Collection<BankBill> getAll() {
         return Collections.unmodifiableList(bills);
     }
 
