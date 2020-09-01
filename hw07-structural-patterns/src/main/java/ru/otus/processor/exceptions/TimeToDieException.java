@@ -11,4 +11,9 @@ public class TimeToDieException extends CheckerException {
     public int getSecondDie() {
         return secondDie;
     }
+
+    @Override
+    public String toString() {
+        return String.format("I died at %d second", secondDie);
+    }
 }
