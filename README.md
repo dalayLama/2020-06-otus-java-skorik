@@ -10,4 +10,5 @@ hw02-generic-collections - DIY ArrayList<br>
 hw03-reflections - Reflection<br>
 hw04-gc - Сравнение разных сборщиков мусора<br>
 hw05-aop - Автоматическое логирование<br>
-hw06-solid - Эмулятор банкомата
+hw06-solid - Эмулятор банкомата<br>
+hw07-structural-patterns - Структурные паттерны
