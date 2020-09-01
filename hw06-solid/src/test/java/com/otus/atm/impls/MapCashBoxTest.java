@@ -10,11 +10,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 
-class ListCashBoxTest {
+class MapCashBoxTest {
 
     @Test
     void shouldRemoveWhenTakeAway() {
-        ListCashBox box = new ListCashBox();
+        MapCashBox box = new MapCashBox();
         box.add(List.of(
                 BankBill._100, BankBill._50, BankBill._1000
         ));

@@ -22,7 +22,7 @@ class DefaultATMTest {
 
     @BeforeEach
     public void setUp() {
-        cashBox = new ListCashBox();
+        cashBox = new MapCashBox();
         calculator = new DefaultCalculator();
     }
 
