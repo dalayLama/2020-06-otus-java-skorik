@@ -1,4 +1,4 @@
-package ru.otus.checkers;
+package ru.otus.types.checkers;
 
 import ru.otus.WritableType;
 import ru.otus.WritableTypeChecker;

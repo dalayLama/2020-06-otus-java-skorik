@@ -1,4 +1,7 @@
-package ru.otus;
+package ru.otus.types;
+
+import ru.otus.WritableType;
+import ru.otus.WritableTypeChecker;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,7 +11,7 @@ public class DefinerTypeImpl implements DefinerType {
 
     private final List<WritableTypeChecker> checkers;
 
-    public DefinerTypeImpl(Collection<? extends WritableTypeChecker> checkers) {
+    DefinerTypeImpl(Collection<? extends WritableTypeChecker> checkers) {
         this.checkers = new ArrayList<>(checkers);
     }
 

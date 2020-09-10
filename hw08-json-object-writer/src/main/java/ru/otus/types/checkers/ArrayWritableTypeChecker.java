@@ -1,19 +1,19 @@
-package ru.otus.checkers;
+package ru.otus.types.checkers;
 
 import ru.otus.WritableType;
 import ru.otus.WritableTypeChecker;
 
 import java.util.Objects;
 
-public class NullWritableTypeChecker implements WritableTypeChecker {
+public class ArrayWritableTypeChecker implements WritableTypeChecker {
 
     @Override
     public boolean isKnowType(Object object) {
-        return Objects.isNull(object);
+        return Objects.nonNull(object) && object.getClass().isArray();
     }
 
     @Override
     public WritableType getType() {
-        return WritableType.NULL;
+        return WritableType.ARRAY;
     }
 }

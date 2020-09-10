@@ -1,5 +1,7 @@
 package ru.otus;
 
+import ru.otus.types.DefinerType;
+
 public class MyGsonImpl implements MyGson {
 
     private final DefinerType definerType;

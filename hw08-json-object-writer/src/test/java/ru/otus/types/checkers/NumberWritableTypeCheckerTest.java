@@ -1,4 +1,4 @@
-package ru.otus.checkers;
+package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

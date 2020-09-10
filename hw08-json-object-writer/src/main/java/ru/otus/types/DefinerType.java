@@ -1,4 +1,6 @@
-package ru.otus;
+package ru.otus.types;
+
+import ru.otus.WritableType;
 
 public interface DefinerType {
 
