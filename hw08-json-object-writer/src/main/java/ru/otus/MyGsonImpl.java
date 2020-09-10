@@ -1,23 +1,19 @@
 package ru.otus;
 
-import ru.otus.types.TypeDefiner;
-import ru.otus.types.WritableType;
-
 public class MyGsonImpl implements MyGson {
 
-    private final TypeDefiner typeDefiner;
+    private final WriterDefiner writerDefiner;
 
-    private final FactoryJsonWriter factoryWriter;
-
-    public MyGsonImpl(TypeDefiner typeDefiner, FactoryJsonWriter factoryWriter) {
-        this.typeDefiner = typeDefiner;
-        this.factoryWriter = factoryWriter;
+    public MyGsonImpl(WriterDefiner writerDefiner) {
+        if (writerDefiner == null) {
+            throw new NullPointerException("writerDefiner can't be null");
+        }
+        this.writerDefiner = writerDefiner;
     }
 
     @Override
     public String toJson(Object object) {
-        WritableType writableType = typeDefiner.defineType(object);
-        JsonWriter jsonWriter = factoryWriter.createJsonWriter(writableType);
-        return jsonWriter.toJson(object);
+        JsonWriter writer = writerDefiner.getWriter(object);
+        return writer.toJson(object);
     }
 }
