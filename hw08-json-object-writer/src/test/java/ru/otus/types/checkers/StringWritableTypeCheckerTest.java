@@ -2,7 +2,7 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.WritableType;
+import ru.otus.types.WritableType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

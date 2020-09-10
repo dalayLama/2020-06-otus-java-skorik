@@ -1,7 +1,7 @@
 package ru.otus.types.checkers;
 
-import ru.otus.WritableType;
-import ru.otus.WritableTypeChecker;
+import ru.otus.types.WritableType;
+import ru.otus.types.WritableTypeChecker;
 
 import java.util.Objects;
 

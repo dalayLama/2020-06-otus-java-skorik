@@ -1,6 +1,6 @@
 package ru.otus.types.checkers;
 
-import ru.otus.WritableType;
+import ru.otus.types.WritableType;
 
 public class CharWritableTypeChecker extends DefaultWritableTypeChecker {
 

@@ -1,6 +1,5 @@
 package ru.otus.types;
 
-import ru.otus.WritableTypeChecker;
 import ru.otus.types.checkers.*;
 
 import java.util.Collection;
@@ -12,7 +11,7 @@ public class DefaultFactoryDefinerType implements FactoryDefinerType {
 
     private final Set<WritableTypeChecker> checkers = new HashSet<>();
 
-    private DefinerType definerType;
+    private TypeDefiner typeDefiner;
 
     public DefaultFactoryDefinerType(Collection<? extends WritableTypeChecker> checkers) {
         this.checkers.addAll(checkers);
@@ -32,10 +31,10 @@ public class DefaultFactoryDefinerType implements FactoryDefinerType {
     }
 
     @Override
-    public DefinerType createDefinerType() {
-        if (definerType == null) {
-            definerType = new DefinerTypeImpl(checkers);
+    public TypeDefiner createDefinerType() {
+        if (typeDefiner == null) {
+            typeDefiner = new TypeDefinerImpl(checkers);
         }
-        return definerType;
+        return typeDefiner;
     }
 }

@@ -1,4 +1,4 @@
-package ru.otus;
+package ru.otus.types;
 
 public interface WritableTypeChecker {
 

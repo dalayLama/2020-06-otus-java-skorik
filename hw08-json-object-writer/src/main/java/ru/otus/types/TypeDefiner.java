@@ -1,8 +1,6 @@
 package ru.otus.types;
 
-import ru.otus.WritableType;
-
-public interface DefinerType {
+public interface TypeDefiner {
 
     WritableType defineType(Object object);
 
