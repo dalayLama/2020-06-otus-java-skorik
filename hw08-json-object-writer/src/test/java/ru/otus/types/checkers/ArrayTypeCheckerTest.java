@@ -2,12 +2,12 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 
-class ArrayWritableTypeCheckerTest {
+class ArrayTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть true если параметром является массив")
@@ -36,7 +36,7 @@ class ArrayWritableTypeCheckerTest {
     @Test
     @DisplayName("Должен вернуть ARRAY в методе getType")
     public void shouldReturnARRAYInMethodGetType() {
-        assertThat(new ArrayWritableTypeChecker().getType()).isEqualTo(WritableType.ARRAY);
+        assertThat(new ArrayWritableTypeChecker().getType()).isEqualTo(Type.ARRAY);
     }
 
 }

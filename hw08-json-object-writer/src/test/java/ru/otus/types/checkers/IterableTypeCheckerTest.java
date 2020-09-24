@@ -2,7 +2,7 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class IterableWritableTypeCheckerTest {
+class IterableTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть true для Iterable")
@@ -37,7 +37,7 @@ class IterableWritableTypeCheckerTest {
     @Test
     @DisplayName("Должен вернуть ITERABLE в методе getType")
     public void shouldReturnITERABLEInMethodGetType() {
-        assertThat(new IterableWritableTypeChecker().getType()).isEqualTo(WritableType.ITERABLE);
+        assertThat(new IterableWritableTypeChecker().getType()).isEqualTo(Type.ITERABLE);
     }
 
 }

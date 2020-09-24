@@ -2,18 +2,18 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CustomObjectWritableTypeCheckerTest {
+class CustomObjectTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть CUSTOM_OBJECT в методе getType")
     public void shouldReturnCUSTOM_OBJECTInMethodGetType() {
-        assertThat(new CustomObjectWritableTypeChecker().getType()).isEqualTo(WritableType.CUSTOM_OBJECT);
+        assertThat(new CustomObjectWritableTypeChecker().getType()).isEqualTo(Type.CUSTOM_OBJECT);
     }
 
     @Test

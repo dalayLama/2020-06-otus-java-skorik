@@ -2,16 +2,16 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BooleanWritableTypeCheckerTest {
+class BooleanTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть BOOLEAN в методе getType")
     public void shouldReturnBOOLEANInMethodGetType() {
-        assertThat(new BooleanWritableTypeChecker().getType()).isEqualTo(WritableType.BOOLEAN);
+        assertThat(new BooleanWritableTypeChecker().getType()).isEqualTo(Type.BOOLEAN);
     }
 
     @Test

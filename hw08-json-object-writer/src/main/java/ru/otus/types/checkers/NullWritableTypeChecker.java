@@ -1,6 +1,6 @@
 package ru.otus.types.checkers;
 
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 import ru.otus.types.WritableTypeChecker;
 
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class NullWritableTypeChecker implements WritableTypeChecker {
     }
 
     @Override
-    public WritableType getType() {
-        return WritableType.NULL;
+    public Type getType() {
+        return Type.NULL;
     }
 }

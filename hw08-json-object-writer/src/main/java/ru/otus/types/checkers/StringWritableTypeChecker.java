@@ -1,12 +1,12 @@
 package ru.otus.types.checkers;
 
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 public class StringWritableTypeChecker extends DefaultWritableTypeChecker {
 
     @Override
-    public WritableType getType() {
-        return WritableType.STRING;
+    public Type getType() {
+        return Type.STRING;
     }
 
     @Override

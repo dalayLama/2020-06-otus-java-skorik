@@ -2,11 +2,11 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NullWritableTypeCheckerTest {
+class NullTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть true для параметра null")
@@ -25,7 +25,7 @@ class NullWritableTypeCheckerTest {
     @Test
     @DisplayName("Должен вернуть NULL в методе getType")
     public void shouldReturnNULLInMethodGetType() {
-        assertThat(new NullWritableTypeChecker().getType()).isEqualTo(WritableType.NULL);
+        assertThat(new NullWritableTypeChecker().getType()).isEqualTo(Type.NULL);
     }
 
 }

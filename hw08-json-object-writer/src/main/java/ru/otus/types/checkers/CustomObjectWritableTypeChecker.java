@@ -1,6 +1,6 @@
 package ru.otus.types.checkers;
 
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 import ru.otus.types.WritableTypeChecker;
 
 import java.util.Objects;
@@ -20,7 +20,7 @@ public class CustomObjectWritableTypeChecker implements WritableTypeChecker {
     }
 
     @Override
-    public WritableType getType() {
-        return WritableType.CUSTOM_OBJECT;
+    public Type getType() {
+        return Type.CUSTOM_OBJECT;
     }
 }

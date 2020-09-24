@@ -13,11 +13,11 @@ public class TypeDefinerImpl implements TypeDefiner {
     }
 
     @Override
-    public WritableType defineType(Object object) {
+    public Type defineType(Object object) {
         return checkers.stream()
                 .filter(checker -> checker.isKnowType(object))
                 .map(WritableTypeChecker::getType)
-                .findFirst().orElse(WritableType.UNKNOWN);
+                .findFirst().orElse(Type.UNKNOWN);
     }
 
 }

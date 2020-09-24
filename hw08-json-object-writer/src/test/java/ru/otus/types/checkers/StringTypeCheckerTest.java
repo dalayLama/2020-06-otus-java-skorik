@@ -2,11 +2,11 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class StringWritableTypeCheckerTest {
+class StringTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть true для String")
@@ -23,7 +23,7 @@ class StringWritableTypeCheckerTest {
     @Test
     @DisplayName("Должен вернуть STRING в методе getType")
     public void shouldReturnSTRINGInMethodGetType() {
-        assertThat(new StringWritableTypeChecker().getType()).isEqualTo(WritableType.STRING);
+        assertThat(new StringWritableTypeChecker().getType()).isEqualTo(Type.STRING);
     }
 
 }

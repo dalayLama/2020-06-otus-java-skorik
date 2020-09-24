@@ -1,9 +1,9 @@
 package ru.otus;
 
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 public interface JsonWriterFactory {
 
-    JsonWriter createJsonWriter(WritableType writableType);
+    JsonWriter createJsonWriter(Type type);
 
 }

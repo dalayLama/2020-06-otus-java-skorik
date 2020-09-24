@@ -2,11 +2,11 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class NumberWritableTypeCheckerTest {
+class NumberTypeCheckerTest {
 
     @Test
     @DisplayName("Должен вернуть true для всех основных чисел")
@@ -30,7 +30,7 @@ class NumberWritableTypeCheckerTest {
     @Test
     @DisplayName("Должен вернуть NUMBER в методе getType")
     public void shouldReturnNUMBERInMethodGetType() {
-        assertThat(new NumberWritableTypeChecker().getType()).isEqualTo(WritableType.NUMBER);
+        assertThat(new NumberWritableTypeChecker().getType()).isEqualTo(Type.NUMBER);
     }
 
 }

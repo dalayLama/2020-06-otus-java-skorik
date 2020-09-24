@@ -2,18 +2,18 @@ package ru.otus.types.checkers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CharWritableTypeCheckerTest {
+class CharTypeCheckerTest {
 
     @DisplayName("Должен вернуть true для char")
     @Test
     public void shouldReturnTrueForChar() {
         CharWritableTypeChecker checker = new CharWritableTypeChecker();
         assertThat(checker.isKnowType('a')).isEqualTo(true);
-        assertThat(checker.getType()).isEqualTo(WritableType.CHAR);
+        assertThat(checker.getType()).isEqualTo(Type.CHAR);
     }
 
     @DisplayName("Должен вернуть false для не char")
@@ -26,7 +26,7 @@ class CharWritableTypeCheckerTest {
     @DisplayName("В методе getType должен возвращать CHAR")
     @Test
     public void shouldReturnCharInMethodGetType() {
-        assertThat(new CharWritableTypeChecker().getType()).isEqualTo(WritableType.CHAR);
+        assertThat(new CharWritableTypeChecker().getType()).isEqualTo(Type.CHAR);
     }
 
 }

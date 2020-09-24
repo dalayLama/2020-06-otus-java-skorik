@@ -1,11 +1,11 @@
 package ru.otus;
 
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 public interface SpecificFactoryJsonWriter {
 
     JsonWriter createJsonWriter();
 
-    WritableType getSupportedWritableType();
+    Type getSupportedWritableType();
 
 }

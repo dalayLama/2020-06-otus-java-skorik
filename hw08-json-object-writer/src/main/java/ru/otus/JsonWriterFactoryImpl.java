@@ -1,7 +1,7 @@
 package ru.otus;
 
 import ru.otus.exceptions.NotFoundWriterException;
-import ru.otus.types.WritableType;
+import ru.otus.types.Type;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class JsonWriterFactoryImpl implements JsonWriterFactory {
 
-    private final Map<WritableType, SpecificFactoryJsonWriter> writersFactories = new HashMap<>();
+    private final Map<Type, SpecificFactoryJsonWriter> writersFactories = new HashMap<>();
 
     public JsonWriterFactoryImpl(Collection<? extends SpecificFactoryJsonWriter> writersFactories) {
         addFactoryWriters(writersFactories);
@@ -25,10 +25,10 @@ public class JsonWriterFactoryImpl implements JsonWriterFactory {
     }
 
     @Override
-    public JsonWriter createJsonWriter(WritableType writableType) {
-        SpecificFactoryJsonWriter jw = writersFactories.getOrDefault(writableType, null);
+    public JsonWriter createJsonWriter(Type type) {
+        SpecificFactoryJsonWriter jw = writersFactories.getOrDefault(type, null);
         if (jw == null) {
-            throw new NotFoundWriterException("Didn't find writer for type \"" + writableType.name() + "\"");
+            throw new NotFoundWriterException("Didn't find writer for type \"" + type.name() + "\"");
         }
         return jw.createJsonWriter();
     }
