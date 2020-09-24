@@ -7,16 +7,16 @@ public class WriterDefinerByWritableType implements WriterDefiner {
 
     private final TypeDefiner typeDefiner;
 
-    private final FactoryJsonWriter factoryJsonWriter;
+    private final JsonWriterFactory jsonWriterFactory;
 
-    public WriterDefinerByWritableType(TypeDefiner typeDefiner, FactoryJsonWriter factoryJsonWriter) {
+    public WriterDefinerByWritableType(TypeDefiner typeDefiner, JsonWriterFactory jsonWriterFactory) {
         this.typeDefiner = typeDefiner;
-        this.factoryJsonWriter = factoryJsonWriter;
+        this.jsonWriterFactory = jsonWriterFactory;
     }
 
     @Override
     public JsonWriter getWriter(Object object) {
         WritableType writableType = typeDefiner.defineType(object);
-        return factoryJsonWriter.createJsonWriter(writableType);
+        return jsonWriterFactory.createJsonWriter(writableType);
     }
 }
