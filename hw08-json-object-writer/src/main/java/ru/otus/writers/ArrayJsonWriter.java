@@ -3,6 +3,7 @@ package ru.otus.writers;
 import ru.otus.WriterDefiner;
 import ru.otus.exceptions.DefiningTypeException;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,23 +27,41 @@ public class ArrayJsonWriter extends CollectionJsonWriter {
     @SuppressWarnings("rawtypes")
     private List definePrimitiveArray(Class<?> type, Object object) {
         if (type.equals(Byte.TYPE)) {
-            //todo
-            return List.of((byte[]) object);
+            List<Byte> bytes = new ArrayList<>();
+            for (byte b : (byte[]) object) {
+                bytes.add(b);
+            }
+            return bytes;
         } if (type.equals(Short.TYPE)) {
-            //todo
-            return List.of((short[]) object);
+            List<Short> shorts = new ArrayList<>();
+            for (short s : (short[]) object) {
+                shorts.add(s);
+            }
+            return shorts;
         } if (type.equals(Integer.TYPE)) {
             return Arrays.stream((int[]) object).boxed().collect(Collectors.toList());
         } if (type.equals(Long.TYPE)) {
-            return List.of((long[]) object);
+            return Arrays.stream((long[]) object).boxed().collect(Collectors.toList());
         } if (type.equals(Float.TYPE)) {
-            return List.of((float[]) object);
+            List<Float> floats = new ArrayList<>();
+            for (float f : (float[]) object) {
+                floats.add(f);
+            }
+            return floats;
         } if (type.equals(Double.TYPE)) {
-            return List.of((double[]) object);
+            return Arrays.stream((double[]) object).boxed().collect(Collectors.toList());
         } if (type.equals(Boolean.TYPE)) {
-            return List.of((boolean[]) object);
+            List<Boolean> booleans = new ArrayList<>();
+            for (boolean b : (boolean[]) object) {
+                booleans.add(b);
+            }
+            return booleans;
         } if (type.equals(Character.TYPE)) {
-            return List.of((char[]) object);
+            List<Character> characters = new ArrayList<>();
+            for (char c : (char[]) object) {
+                characters.add(c);
+            }
+            return characters;
         } else {
             throw new DefiningTypeException("failed to define type array, componentType - "
                     + type.getName() + ", array - " + object);
