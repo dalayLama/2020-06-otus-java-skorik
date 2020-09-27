@@ -3,34 +3,26 @@ package ru.otus;
 import ru.otus.exceptions.NotFoundWriterException;
 import ru.otus.types.Type;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class JsonWriterFactoryImpl implements JsonWriterFactory {
 
-    private final Map<Type, SpecificFactoryJsonWriter> writersFactories = new HashMap<>();
+    private final Map<Type, JsonWriter> writers = new HashMap<>();
 
-    public JsonWriterFactoryImpl(Collection<? extends SpecificFactoryJsonWriter> writersFactories) {
-        addFactoryWriters(writersFactories);
-    }
+    public JsonWriterFactoryImpl() { }
 
-    public void addFactoryWriters(SpecificFactoryJsonWriter... writersFactories) {
-        addFactoryWriters(List.of(writersFactories));
-    }
-
-    public void addFactoryWriters(Collection<? extends SpecificFactoryJsonWriter> writersFactories) {
-        writersFactories.forEach(f -> this.writersFactories.put(f.getSupportedWritableType(), f));
+    public void addWriters(Map<Type, JsonWriter> writerMap) {
+        writers.putAll(writerMap);
     }
 
     @Override
     public JsonWriter createJsonWriter(Type type) {
-        SpecificFactoryJsonWriter jw = writersFactories.getOrDefault(type, null);
-        if (jw == null) {
+        JsonWriter writer = writers.getOrDefault(type, null);
+        if (writer == null) {
             throw new NotFoundWriterException("Didn't find writer for type \"" + type.name() + "\"");
         }
-        return jw.createJsonWriter();
+        return writer;
     }
 
 
