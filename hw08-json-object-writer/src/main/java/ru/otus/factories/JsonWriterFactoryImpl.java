@@ -1,5 +1,6 @@
-package ru.otus;
+package ru.otus.factories;
 
+import ru.otus.JsonWriter;
 import ru.otus.exceptions.NotFoundWriterException;
 import ru.otus.types.Type;
 

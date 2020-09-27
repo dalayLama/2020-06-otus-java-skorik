@@ -2,6 +2,7 @@ package ru.otus.writers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.otus.ReflectionReaderFields;
 
 import java.util.ArrayList;
 import java.util.List;

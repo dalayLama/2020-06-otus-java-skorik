@@ -1,6 +1,7 @@
 package ru.otus.writers.kits;
 
 import ru.otus.JsonWriter;
+import ru.otus.ReaderFields;
 import ru.otus.WriterDefiner;
 import ru.otus.types.Type;
 import ru.otus.writers.*;

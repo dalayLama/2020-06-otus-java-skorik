@@ -1,4 +1,6 @@
-package ru.otus.writers;
+package ru.otus;
+
+import ru.otus.writers.FieldInfo;
 
 import java.util.Collection;
 

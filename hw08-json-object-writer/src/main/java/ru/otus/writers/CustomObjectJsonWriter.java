@@ -1,6 +1,7 @@
 package ru.otus.writers;
 
 import ru.otus.JsonWriter;
+import ru.otus.ReaderFields;
 import ru.otus.WriterDefiner;
 
 import java.util.ArrayList;

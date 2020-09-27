@@ -1,5 +1,6 @@
-package ru.otus;
+package ru.otus.factories;
 
+import ru.otus.JsonWriter;
 import ru.otus.types.Type;
 
 public interface JsonWriterFactory {

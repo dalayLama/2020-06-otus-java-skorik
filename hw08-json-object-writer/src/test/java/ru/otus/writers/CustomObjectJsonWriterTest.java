@@ -2,7 +2,8 @@ package ru.otus.writers;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.otus.JsonWriterFactoryImpl;
+import ru.otus.ReflectionReaderFields;
+import ru.otus.factories.JsonWriterFactoryImpl;
 import ru.otus.WriterDefiner;
 import ru.otus.WriterDefinerByType;
 import ru.otus.types.DefaultFactoryDefinerType;
