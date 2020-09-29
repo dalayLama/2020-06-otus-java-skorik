@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.WriterDefiner;
 
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,13 +35,17 @@ class IterableJsonWriterTest {
     @DisplayName("Должен создать правильно оформленные елемент из Set-а")
     public void shouldCreateCorrectElementFromSet() {
         final String expectedResult = "[1, 2, 3]";
-        final Set<Integer> object = Set.of(1, 2, 3);
+        final Set<Integer> set = new LinkedHashSet<>();
+        set.add(1);
+        set.add(2);
+        set.add(3);
+
 
         WriterDefiner definer = mock(WriterDefiner.class);
         given(definer.getWriter(any())).willReturn(new SimpleJsonWriter());
 
         IterableJsonWriter writer = new IterableJsonWriter(definer);
-        String result = writer.toJson(object);
+        String result = writer.toJson(set);
         assertThat(result).isEqualTo(expectedResult);
     }
 

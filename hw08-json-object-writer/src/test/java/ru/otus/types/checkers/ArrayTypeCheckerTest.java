@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import ru.otus.types.Type;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
 
 class ArrayTypeCheckerTest {
 
@@ -21,7 +20,7 @@ class ArrayTypeCheckerTest {
     @DisplayName("Должен вернуть false для если параметром является не массив")
     public void shouldReturnFalseForNotArray() {
         ArrayWritableTypeChecker checker = new ArrayWritableTypeChecker();
-        boolean knowType = checker.isKnowType(any());
+        boolean knowType = checker.isKnowType(new Object());
         assertThat(knowType).isEqualTo(false);
     }
 
