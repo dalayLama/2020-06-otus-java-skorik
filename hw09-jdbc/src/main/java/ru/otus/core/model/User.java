@@ -1,16 +1,25 @@
 package ru.otus.core.model;
 
+import ru.otus.core.annotations.Id;
+
 /**
  * @author sergey
  * created on 03.02.19.
+ * @author Artur(changed by)
  */
 public class User {
+
+    @Id
     private final long id;
+
     private final String name;
 
-    public User(long id, String name) {
+    private final int age;
+
+    public User(long id, String name, int age) {
         this.id = id;
         this.name = name;
+        this.age = age;
     }
 
     public long getId() {
@@ -19,6 +28,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override

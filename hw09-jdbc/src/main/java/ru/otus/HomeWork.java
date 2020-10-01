@@ -12,7 +12,6 @@ import ru.otus.jdbc.mapper.JdbcMapper;
 import ru.otus.jdbc.sessionmanager.SessionManagerJdbc;
 
 import javax.sql.DataSource;
-import java.util.Optional;
 
 
 public class HomeWork {
@@ -31,13 +30,13 @@ public class HomeWork {
 
 // Код дальше должен остаться, т.е. userDao должен использоваться
         var dbServiceUser = new DbServiceUserImpl(userDao);
-        var id = dbServiceUser.saveUser(new User(0, "dbServiceUser"));
-        Optional<User> user = dbServiceUser.getUser(id);
+        //var id = dbServiceUser.saveUser(new User(0, "dbServiceUser", age));
+        //Optional<User> user = dbServiceUser.getUser(id);
 
-        user.ifPresentOrElse(
-                crUser -> logger.info("created user, name:{}", crUser.getName()),
-                () -> logger.info("user was not created")
-        );
+//        user.ifPresentOrElse(
+//                crUser -> logger.info("created user, name:{}", crUser.getName()),
+//                () -> logger.info("user was not created")
+//        );
 // Работа со счетом
 
 
