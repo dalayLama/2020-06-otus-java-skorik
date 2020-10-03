@@ -21,7 +21,7 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
 
     public EntityClassMetaDataByReflection(Class<T> tClass) throws ReadEntityException {
         try {
-            this.name = tClass.getName();
+            this.name = tClass.getSimpleName();
             this.constructor = tClass.getConstructor();
             ReadFieldsResult readFieldsResult = readFields(tClass);
             this.idField = readFieldsResult.getIdField();
@@ -89,7 +89,7 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
 
         private Field idField;
 
-        private final Set<Field> allFields = new HashSet<>();
+        private final Set<Field> allFields = new LinkedHashSet<>();
 
         public Field getIdField() {
             return idField;
