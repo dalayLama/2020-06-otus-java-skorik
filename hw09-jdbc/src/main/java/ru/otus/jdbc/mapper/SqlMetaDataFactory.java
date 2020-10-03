@@ -1,6 +1,6 @@
 package ru.otus.jdbc.mapper;
 
-public interface FactorySqlMetaData {
+public interface SqlMetaDataFactory {
 
     EntitySQLMetaData create(EntityClassMetaData<?> metaData);
 

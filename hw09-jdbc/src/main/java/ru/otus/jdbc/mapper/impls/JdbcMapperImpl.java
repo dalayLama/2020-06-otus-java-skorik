@@ -118,6 +118,11 @@ public class JdbcMapperImpl<T> implements JdbcMapper<T> {
         }
     }
 
+    @Override
+    public SessionManagerJdbc getSessionManager() {
+        return sessionManager;
+    }
+
     private Connection getConnection() {
         return sessionManager.getCurrentSession().getConnection();
     }

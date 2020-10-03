@@ -5,11 +5,14 @@ import ru.otus.core.annotations.Id;
 public class Account {
 
     @Id
-    private final long no;
+    private long no;
 
-    private final String type;
+    private String type;
 
-    private final double rest;
+    private double rest;
+
+    public Account() {
+    }
 
     public Account(long no, String type, double rest) {
         this.no = no;
@@ -21,11 +24,23 @@ public class Account {
         return no;
     }
 
+    public void setNo(long no) {
+        this.no = no;
+    }
+
     public String getType() {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public double getRest() {
         return rest;
+    }
+
+    public void setRest(double rest) {
+        this.rest = rest;
     }
 }

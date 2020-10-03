@@ -8,22 +8,22 @@ public class DefaultJdbcMapperFactory implements JdbcMapperFactory {
 
     private final SessionManagerJdbc sessionManager;
 
-    private final FactoryEntityMetaData factoryEntityMetaData;
+    private final EntityMetaDataFactory entityMetaDataFactory;
 
-    private final FactorySqlMetaData factorySqlMetaData;
+    private final SqlMetaDataFactory sqlMetaDataFactory;
 
     public DefaultJdbcMapperFactory(SessionManagerJdbc sessionManager,
-                                    FactoryEntityMetaData factoryEntityMetaData,
-                                    FactorySqlMetaData factorySqlMetaData) {
+                                    EntityMetaDataFactory entityMetaDataFactory,
+                                    SqlMetaDataFactory sqlMetaDataFactory) {
         this.sessionManager = sessionManager;
-        this.factoryEntityMetaData = factoryEntityMetaData;
-        this.factorySqlMetaData = factorySqlMetaData;
+        this.entityMetaDataFactory = entityMetaDataFactory;
+        this.sqlMetaDataFactory = sqlMetaDataFactory;
     }
 
     @Override
     public <T> JdbcMapper<T> create(Class<T> tClass, DbExecutor<T> dbExecutor, Adapter<T> adapter) {
-        EntityClassMetaData<T> meta = factoryEntityMetaData.create(tClass);
-        EntitySQLMetaData sqlMetaData = factorySqlMetaData.create(meta);
+        EntityClassMetaData<T> meta = entityMetaDataFactory.create(tClass);
+        EntitySQLMetaData sqlMetaData = sqlMetaDataFactory.create(meta);
         return new JdbcMapperImpl<>(sessionManager, dbExecutor, sqlMetaData, meta, adapter);
     }
 }
