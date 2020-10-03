@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.core.annotations.Id;
 import ru.otus.jdbc.mapper.impls.EntityClassMetaDataByReflection;
+import ru.otus.jdbc.mapper.impls.EntitySQLMetaDataByClassMeta;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class EntitySQLMetaDataByClassMetaTest {
     

@@ -1,4 +1,7 @@
-package ru.otus.jdbc.mapper;
+package ru.otus.jdbc.mapper.impls;
+
+import ru.otus.jdbc.mapper.EntityClassMetaData;
+import ru.otus.jdbc.mapper.EntitySQLMetaData;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
