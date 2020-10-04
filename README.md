@@ -13,4 +13,5 @@ hw05-aop - Автоматическое логирование<br>
 hw06-solid - Эмулятор банкомата<br>
 hw07-structural-patterns - Структурные паттерны<br>
 hw08-json-object-writer - Cвой json object writer<br>
-hw09-jdbc - Самодельный ORM
+hw09-jdbc - Самодельный ORM<br>
+hw10-jpql - Использование Hibernate
