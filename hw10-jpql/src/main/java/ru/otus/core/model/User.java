@@ -2,6 +2,7 @@ package ru.otus.core.model;
 
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "user")
@@ -16,6 +17,12 @@ public class User implements HibernateModel<Long> {
 
     @Column(name = "age")
     private Integer age;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Address address;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Phone> phones = new ArrayList<>();
 
     public User() {
     }
@@ -49,6 +56,30 @@ public class User implements HibernateModel<Long> {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
+    public void addPhones(Collection<? extends Phone> phones) {
+        this.phones.addAll(phones);
+    }
+
+    public void addAddress(Address address) {
+        this.address = address;
     }
 
     @Override
