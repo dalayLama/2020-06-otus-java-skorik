@@ -1,35 +1,37 @@
 package ru.otus.core.model;
 
-import ru.otus.core.annotations.Id;
 
-/**
- * @author sergey
- * created on 03.02.19.
- * @author Artur(changed by)
- */
-public class User {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "user")
+public class User implements HibernateModel<Long> {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "name")
     private String name;
 
-    private int age;
+    @Column(name = "age")
+    private Integer age;
 
     public User() {
     }
 
-    public User(long id, String name, int age) {
+    public User(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public long getId() {
+    @Override
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,11 +43,11 @@ public class User {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

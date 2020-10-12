@@ -7,6 +7,8 @@ import ru.otus.db.exceptions.MigrateException;
 
 public class HibernateFlywayMigrationManager implements MigrationManager {
 
+    public static final String DEFAULT_LOCATION = "classpath:/db/migration/";
+
     private final static String DB_URL_PROPERTY = "hibernate.connection.url";
 
     private final static String DB_USER_NAME_PROPERTY = "hibernate.connection.username";
@@ -20,6 +22,10 @@ public class HibernateFlywayMigrationManager implements MigrationManager {
     public HibernateFlywayMigrationManager(Configuration configuration, String locationMigrations) {
         this.configuration = configuration;
         this.locationMigrations = locationMigrations;
+    }
+
+    public HibernateFlywayMigrationManager(Configuration configuration) {
+        this(configuration, DEFAULT_LOCATION);
     }
 
     @Override
