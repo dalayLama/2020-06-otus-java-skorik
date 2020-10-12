@@ -14,6 +14,8 @@ import ru.otus.hibernate.HibernateFlywayMigrationManager;
 import ru.otus.hibernate.HibernateSessionManager;
 import ru.otus.hibernate.HibernateUserDao;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -40,11 +42,25 @@ public class HomeWorkHibernate {
 
 // Код дальше должен остаться, т.е. userDao должен использоваться
         var dbServiceUser = new UserDaoDBService(userDao);
-        var idUser = dbServiceUser.save(new User(null, "new user", 17));
+        User newUser = new User(null, "new user", 17);
+        Address newAddress = new Address(newUser, "new street");
+        List<Phone> newPhones = Arrays.asList(
+                new Phone(newUser, "111"),
+                new Phone(newUser, "222")
+        );
+        newUser.setAddress(newAddress);
+        newUser.addPhones(newPhones);
+
+        var idUser = dbServiceUser.save(newUser);
         Optional<User> user = dbServiceUser.getModel(idUser);
 
         user.ifPresentOrElse(
-                crUser -> logger.info("created user, name:{}", crUser.getName()),
+                crUser -> {
+                    logger.info("created user, name:{}", crUser.getName());
+                    logger.info("created address, street: {}", crUser.getAddress().getStreet());
+                    crUser.getPhones().forEach(p ->
+                            logger.info("created phone, number: {}", p.getNumber()));
+                },
                 () -> logger.info("user was not created")
         );
     }
