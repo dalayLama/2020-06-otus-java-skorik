@@ -5,6 +5,8 @@ import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.core.dao.UserDao;
+import ru.otus.core.model.Address;
+import ru.otus.core.model.Phone;
 import ru.otus.core.model.User;
 import ru.otus.core.service.UserDaoDBService;
 import ru.otus.hibernate.DefaultSessionFactoryCreator;
@@ -15,9 +17,9 @@ import ru.otus.hibernate.HibernateUserDao;
 import java.util.Optional;
 
 
-public class HomeWork {
+public class HomeWorkHibernate {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeWork.class);
+    private static final Logger logger = LoggerFactory.getLogger(HomeWorkHibernate.class);
 
     private static final String PATH_CONFIG_HIBER = "hibernate.cfg.xml";
 
@@ -28,7 +30,7 @@ public class HomeWork {
         migrationManager.migrate();
 
         DefaultSessionFactoryCreator sessionFactoryCreator = new DefaultSessionFactoryCreator(config);
-        sessionFactoryCreator.addEntityClasses(User.class);
+        sessionFactoryCreator.addEntityClasses(User.class, Phone.class, Address.class);
         SessionFactory sessionFactory = sessionFactoryCreator.create();
         HibernateSessionManager sessionManager = new HibernateSessionManager(sessionFactory);
 
