@@ -7,5 +7,5 @@ create table user (
 create table account (
     no bigint(20) not null auto_increment,
     type varchar(255),
-    rest number
+    rest int
 );

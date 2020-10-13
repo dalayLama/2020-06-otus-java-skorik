@@ -46,7 +46,7 @@ public class HomeWork {
 
 // Код дальше должен остаться, т.е. userDao должен использоваться
         var dbServiceUser = new UserDaoDBService(userDao);
-        var idUser = dbServiceUser.save(new User(0L, "new user", 17));
+        var idUser = dbServiceUser.save(new User(null, "new user", 17));
         Optional<User> user = dbServiceUser.getModel(idUser);
 
         user.ifPresentOrElse(
@@ -55,7 +55,7 @@ public class HomeWork {
         );
 // Работа со счетом
         var accountService = new AccountDaoDBService(accountDao);
-        var idAccount = accountService.save(new Account(0L, "simple", 56.9));
+        var idAccount = accountService.save(new Account(null, "simple", 56.9));
         Optional<Account> account = accountService.getModel(idAccount);
 
         account.ifPresentOrElse(
