@@ -21,9 +21,9 @@ public class DefaultJdbcMapperFactory implements JdbcMapperFactory {
     }
 
     @Override
-    public <T> JdbcMapper<T> create(Class<T> tClass, DbExecutor<T> dbExecutor, Adapter<T> adapter) {
+    public <T> JdbcMapper<T> create(Class<T> tClass, DbExecutor dbExecutor) {
         EntityClassMetaData<T> meta = entityMetaDataFactory.create(tClass);
         EntitySQLMetaData sqlMetaData = sqlMetaDataFactory.create(meta);
-        return new JdbcMapperImpl<>(sessionManager, dbExecutor, sqlMetaData, meta, adapter);
+        return new JdbcMapperImpl<>(sessionManager, dbExecutor, sqlMetaData, meta);
     }
 }

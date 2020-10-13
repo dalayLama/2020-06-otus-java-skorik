@@ -31,19 +31,17 @@ class JdbcMapperImplTest {
 
     private SessionManagerJdbc sm;
 
-
-
     @BeforeEach
     public void setUp() throws SQLException {
         DataSource dataSource = new DataSourceH2();
         flywayMigrations(dataSource);
 
         sm = new SessionManagerJdbc(dataSource);
-        DbExecutor<User> dbExecutor = new DbExecutorImpl<>();
+        DbExecutor dbExecutor = new DbExecutorImpl();
         EntityClassMetaData<User> meta = new EntityClassMetaDataByReflection<>(User.class);
         EntitySQLMetaData sqlMetaData = new EntitySQLMetaDataByClassMeta(meta);
 
-        jdbcMapper = new JdbcMapperImpl<>(sm, dbExecutor, sqlMetaData, meta, new UserAdapter());
+        jdbcMapper = new JdbcMapperImpl<>(sm, dbExecutor, sqlMetaData, meta);
     }
 
     @Test
@@ -72,12 +70,11 @@ class JdbcMapperImplTest {
 
     @Test
     public void shouldInsertWithoutErrors() {
-        long nullId = 0L;
-        User newUser = new User(nullId, "Somebody", 67);
+        User newUser = new User(null, "Somebody", 67);
         sm.beginSession();
         jdbcMapper.insert(newUser);
         sm.commitSession();
-        assertThat(nullId).isNotEqualTo(newUser.getId());
+        assertThat(newUser.getId()).isNotNull();
         sm.close();
     }
 
@@ -106,7 +103,7 @@ class JdbcMapperImplTest {
 
     @Test
     public void shouldThrowNullIdException() {
-        User newUser = new User(0L, "old user", 22);
+        User newUser = new User(null, "old user", 22);
         sm.beginSession();
         NullIdException exception = assertThrows(NullIdException.class, () -> {
             jdbcMapper.update(newUser);

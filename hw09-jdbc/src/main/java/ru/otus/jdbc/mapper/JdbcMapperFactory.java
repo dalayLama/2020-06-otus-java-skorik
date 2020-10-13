@@ -4,6 +4,6 @@ import ru.otus.jdbc.DbExecutor;
 
 public interface JdbcMapperFactory {
 
-    <T> JdbcMapper<T> create(Class<T> tClass, DbExecutor<T> dbExecutor, Adapter<T> adapter);
+    <T> JdbcMapper<T> create(Class<T> tClass, DbExecutor dbExecutor);
 
 }

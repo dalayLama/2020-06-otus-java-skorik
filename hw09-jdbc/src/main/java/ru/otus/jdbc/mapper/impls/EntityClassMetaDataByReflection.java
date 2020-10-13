@@ -59,19 +59,18 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
     }
 
     private ReadFieldsResult readFields(Class<T> tClass) throws ReadEntityException {
-        ReadFieldsResult readResult = new ReadFieldsResult();
-        readFields(tClass, readResult);
+        ReadFieldsResult readResult = _readFields(tClass);
         if (readResult.getIdField() == null) {
             throw new ReadEntityException("id field not found");
         }
         return readResult;
     }
 
-    private void readFields(Class<?> tClass, ReadFieldsResult rr) throws ReadEntityException {
+    private ReadFieldsResult _readFields(Class<?> tClass) throws ReadEntityException {
         if (tClass == null) {
-            return;
+            return null;
         }
-
+        ReadFieldsResult rr = new ReadFieldsResult();
         for (Field f : tClass.getDeclaredFields()) {
             if (f.isSynthetic()) {
                 continue;
@@ -82,7 +81,8 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
             f.setAccessible(true);
             rr.addField(f);
         }
-        readFields(tClass.getSuperclass(), rr);
+        rr.addValues(_readFields(tClass.getSuperclass()));
+        return rr;
     }
 
     private static class ReadFieldsResult {
@@ -90,6 +90,16 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
         private Field idField;
 
         private final Set<Field> allFields = new LinkedHashSet<>();
+
+        public void addValues(ReadFieldsResult result) {
+            if (result == null) {
+                return;
+            }
+            if (result.getIdField() != null) {
+                setIdField(result.getIdField());
+            }
+            allFields.addAll(result.getFields());
+        }
 
         public Field getIdField() {
             return idField;

@@ -11,7 +11,7 @@ import java.util.function.Function;
  * @author sergey
  * created on 03.02.19.
  */
-public class DbExecutorImpl<T> implements DbExecutor<T> {
+public class DbExecutorImpl implements DbExecutor {
 
     @Override
     public <ID> ID executeInsert(Connection connection, String sql, List<Object> params, Function<ResultSet, ID> rsHandler) throws SQLException {
@@ -40,8 +40,8 @@ public class DbExecutorImpl<T> implements DbExecutor<T> {
     }
 
     @Override
-    public Optional<T> executeSelectById(Connection connection, String sql, Object id,
-                                         Function<ResultSet, T> rsHandler) throws SQLException {
+    public <T> Optional<T> executeSelectById(Connection connection, String sql, Object id,
+                                                    Function<ResultSet, T> rsHandler) throws SQLException {
         try (var pst = connection.prepareStatement(sql)) {
             pst.setObject(1, id);
             try (var rs = pst.executeQuery()) {
@@ -51,7 +51,7 @@ public class DbExecutorImpl<T> implements DbExecutor<T> {
     }
 
     @Override
-    public Collection<? extends T> executeSelect(Connection connection, String sql, List<Object> params,
+    public <T> Collection<? extends T> executeSelect(Connection connection, String sql, List<Object> params,
                                                  Function<ResultSet, T> rsHandler) throws SQLException {
         try (var pst = connection.prepareStatement(sql)) {
             initParams(pst, params);

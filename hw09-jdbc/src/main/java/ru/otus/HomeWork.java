@@ -29,6 +29,7 @@ public class HomeWork {
         var dataSource = new DataSourceH2();
         flywayMigrations(dataSource);
         var sessionManager = new SessionManagerJdbc(dataSource);
+        DbExecutorImpl dbExecutor = new DbExecutorImpl();
 
 //фабрики
         EntityMetaDataFactory entityMetaDataFactory = new EntityMetaDataFactoryImpl();
@@ -36,15 +37,11 @@ public class HomeWork {
         JdbcMapperFactory jdbcMapperFactory = new DefaultJdbcMapperFactory(sessionManager, entityMetaDataFactory, sqlMetaDataFactory);
 
 // Работа с пользователем
-        DbExecutorImpl<User> dbExecutorUser = new DbExecutorImpl<>();
-        Adapter<User> userAdapter = new UserAdapter();
-        JdbcMapper<User> jdbcMapperUser = jdbcMapperFactory.create(User.class, dbExecutorUser, userAdapter);
+        JdbcMapper<User> jdbcMapperUser = jdbcMapperFactory.create(User.class, dbExecutor);
         UserDao userDao = new UserDaoJdbcMapper(jdbcMapperUser);
 
 // Работа с аккаунтом
-        DbExecutorImpl<Account> dbExecutorAccount = new DbExecutorImpl<>();
-        Adapter<Account> accountAdapter = new AccountAdapter();
-        JdbcMapper<Account> accountJdbcMapper = jdbcMapperFactory.create(Account.class, dbExecutorAccount, accountAdapter);
+        JdbcMapper<Account> accountJdbcMapper = jdbcMapperFactory.create(Account.class, dbExecutor);
         AccountDao accountDao = new AccountDaoJdbcMapper(accountJdbcMapper);
 
 // Код дальше должен остаться, т.е. userDao должен использоваться
