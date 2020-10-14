@@ -2,6 +2,7 @@ package ru.otus.cachehw;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.WeakHashMap;
 
 /**
@@ -15,7 +16,7 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     public static final String ACTION_REMOVE = "removed";
 
-    private final WeakHashMap<K, V> storage = new WeakHashMap<>();
+    private final Map<K, V> storage = new WeakHashMap<>();
 
     private final List<HwListener<K, V>> listeners = new ArrayList<>();
 
