@@ -11,6 +11,10 @@ import java.util.WeakHashMap;
 public class MyCache<K, V> implements HwCache<K, V> {
 //Надо реализовать эти методы
 
+    public static final String ACTION_ADD = "added";
+
+    public static final String ACTION_REMOVE = "removed";
+
     private final WeakHashMap<K, V> storage = new WeakHashMap<>();
 
     private final List<HwListener<K, V>> listeners = new ArrayList<>();
@@ -18,11 +22,16 @@ public class MyCache<K, V> implements HwCache<K, V> {
     @Override
     public void put(K key, V value) {
         storage.put(key, value);
+        listeners.forEach(l -> l.notify(key, value, ACTION_ADD));
     }
 
     @Override
     public void remove(K key) {
-        storage.remove(key);
+        if (storage.containsKey(key)) {
+            V value = storage.get(key);
+            storage.remove(key);
+            listeners.forEach(l -> l.notify(key, value, ACTION_REMOVE));
+        }
     }
 
     @Override
@@ -32,11 +41,11 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     @Override
     public void addListener(HwListener<K, V> listener) {
-        this.listeners.add(listener);
+        listeners.add(listener);
     }
 
     @Override
     public void removeListener(HwListener<K, V> listener) {
-        this.listeners.remove(listener);
+        listeners.remove(listener);
     }
 }
