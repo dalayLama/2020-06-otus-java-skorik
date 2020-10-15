@@ -14,9 +14,9 @@ class MyCacheTest {
     //-Xmx256m
     @Test
     public void weakReferenceDemo() throws InterruptedException {
-        MyCache<String, Data> cache = new MyCache<>();
-        for (int i = 0; i < 10000; i++) {
-            cache.put("key " + i + 1, new Data());
+        MyCache<Integer, Data> cache = new MyCache<>();
+        for (int i = 0; i < 100; i++) {
+            cache.put(i + 1, new Data());
         }
         logger.info("size before gc: {}", cache.size());
         System.gc();

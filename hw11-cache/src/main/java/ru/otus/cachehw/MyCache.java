@@ -16,28 +16,31 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     public static final String ACTION_REMOVE = "removed";
 
-    private final Map<K, V> storage = new WeakHashMap<>();
+    private final Map<String, V> storage = new WeakHashMap<>();
 
     private final List<HwListener<K, V>> listeners = new ArrayList<>();
 
     @Override
     public void put(K key, V value) {
-        storage.put(key, value);
+        String serializedKey = serializeKey(key);
+        storage.put(serializedKey, value);
         listeners.forEach(l -> l.notify(key, value, ACTION_ADD));
     }
 
     @Override
     public void remove(K key) {
-        if (storage.containsKey(key)) {
-            V value = storage.get(key);
-            storage.remove(key);
+        String serializedKey = serializeKey(key);
+        if (storage.containsKey(serializedKey)) {
+            V value = storage.get(serializedKey);
+            storage.remove(serializedKey);
             listeners.forEach(l -> l.notify(key, value, ACTION_REMOVE));
         }
     }
 
     @Override
     public V get(K key) {
-        return storage.get(key);
+        String serializedKey = serializeKey(key);
+        return storage.get(serializedKey);
     }
 
     @Override
@@ -52,6 +55,10 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     public int size() {
         return storage.size();
+    }
+
+    protected String serializeKey(K key) {
+        return String.valueOf(key);
     }
 
 }
