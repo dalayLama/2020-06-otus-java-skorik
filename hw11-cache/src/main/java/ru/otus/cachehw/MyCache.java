@@ -1,9 +1,9 @@
 package ru.otus.cachehw;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.*;
 
 /**
  * @author sergey
@@ -12,9 +12,7 @@ import java.util.WeakHashMap;
 public class MyCache<K, V> implements HwCache<K, V> {
 //Надо реализовать эти методы
 
-    public static final String ACTION_ADD = "added";
-
-    public static final String ACTION_REMOVE = "removed";
+    private static final Logger logger = LoggerFactory.getLogger(MyCache.class);
 
     private final Map<String, V> storage = new WeakHashMap<>();
 
@@ -24,16 +22,15 @@ public class MyCache<K, V> implements HwCache<K, V> {
     public void put(K key, V value) {
         String serializedKey = serializeKey(key);
         storage.put(serializedKey, value);
-        listeners.forEach(l -> l.notify(key, value, ACTION_ADD));
+        notify(key, value, Action.ADDED);
     }
 
     @Override
     public void remove(K key) {
         String serializedKey = serializeKey(key);
-        if (storage.containsKey(serializedKey)) {
-            V value = storage.get(serializedKey);
-            storage.remove(serializedKey);
-            listeners.forEach(l -> l.notify(key, value, ACTION_REMOVE));
+        V value = storage.remove(serializedKey);
+        if (Objects.nonNull(value)) {
+            notify(key, value, Action.REMOVED);
         }
     }
 
@@ -59,6 +56,14 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     protected String serializeKey(K key) {
         return String.valueOf(key);
+    }
+
+    protected void notify(K key, V value, Action action) {
+        try {
+            listeners.forEach(l -> l.notify(key, value, action));
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 
 }
