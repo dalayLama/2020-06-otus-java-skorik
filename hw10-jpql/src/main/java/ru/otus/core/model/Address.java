@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Address {
 
     @Id
-    @Column(name = "id_user")
+    @Column(name = "id")
     private Long id;
 
     @OneToOne
