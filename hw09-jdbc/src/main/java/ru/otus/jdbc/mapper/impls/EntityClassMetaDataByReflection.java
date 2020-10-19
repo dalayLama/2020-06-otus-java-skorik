@@ -23,7 +23,7 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
         try {
             this.name = tClass.getSimpleName();
             this.constructor = tClass.getConstructor();
-            ReadFieldsResult readFieldsResult = readFields(tClass);
+            ReadFieldsResult readFieldsResult = scanClass(tClass);
             this.idField = readFieldsResult.getIdField();
             this.allFields.addAll(readFieldsResult.getFields());
         } catch (NoSuchMethodException e) {
@@ -58,15 +58,15 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
                 .collect(Collectors.toList());
     }
 
-    private ReadFieldsResult readFields(Class<T> tClass) throws ReadEntityException {
-        ReadFieldsResult readResult = _readFields(tClass);
+    private ReadFieldsResult scanClass(Class<T> tClass) throws ReadEntityException {
+        ReadFieldsResult readResult = readFields(tClass);
         if (readResult.getIdField() == null) {
             throw new ReadEntityException("id field not found");
         }
         return readResult;
     }
 
-    private ReadFieldsResult _readFields(Class<?> tClass) throws ReadEntityException {
+    private ReadFieldsResult readFields(Class<?> tClass) throws ReadEntityException {
         if (tClass == null) {
             return null;
         }
@@ -81,7 +81,7 @@ public class EntityClassMetaDataByReflection<T> implements EntityClassMetaData<T
             f.setAccessible(true);
             rr.addField(f);
         }
-        rr.addValues(_readFields(tClass.getSuperclass()));
+        rr.addValues(readFields(tClass.getSuperclass()));
         return rr;
     }
 
