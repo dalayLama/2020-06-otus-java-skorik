@@ -1,16 +1,17 @@
 package ru.otus.core.service;
 
 import ru.otus.cachehw.HwCache;
-import ru.otus.core.dao.Dao;
 
 import java.util.Optional;
 
-public abstract class CachedAbstractDaoDBService<T, ID> extends AbstractDaoDBService<T, ID> {
+public abstract class CachedAbstractDaoDBService<T, ID> implements DBService<T, ID> {
+
+    private final DBService<T, ID> service;
 
     private final HwCache<ID, T> cache;
 
-    public CachedAbstractDaoDBService(Dao<T, ID> dao, HwCache<ID, T> cache) {
-        super(dao);
+    public CachedAbstractDaoDBService(DBService<T, ID> service, HwCache<ID, T> cache) {
+        this.service = service;
         this.cache = cache;
     }
 
@@ -21,14 +22,14 @@ public abstract class CachedAbstractDaoDBService<T, ID> extends AbstractDaoDBSer
             return Optional.of(t);
         }
 
-        Optional<T> model = super.getModel(id);
+        Optional<T> model = service.getModel(id);
         model.ifPresent(m -> cache.put(id, m));
         return model;
     }
 
     @Override
     public ID save(T model) {
-        ID id = super.save(model);
+        ID id = service.save(model);
         cache.put(id, model);
         return id;
     }

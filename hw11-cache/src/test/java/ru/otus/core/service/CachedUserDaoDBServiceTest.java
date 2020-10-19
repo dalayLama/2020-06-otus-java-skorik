@@ -51,14 +51,15 @@ class CachedUserDaoDBServiceTest {
     @Test
     public void testWithCache() throws InterruptedException {
         MyCache<Long, User> cache = new MyCache<>();
-        CachedUserDaoDBService service = new CachedUserDaoDBService(hibernateUserDao, cache);
+        UserDaoDBService service = new UserDaoDBService(hibernateUserDao);
+        CachedUserDaoDBService cachedService = new CachedUserDaoDBService(service, cache);
         Set<Long> ids = new HashSet<>();
         for (int i = 0; i < limit; i++) {
-            Long id = service.save(createUser(i));
+            Long id = cachedService.save(createUser(i));
             ids.add(id);
         }
         long start = System.currentTimeMillis();
-        ids.forEach(service::getModel);
+        ids.forEach(cachedService::getModel);
         long end = System.currentTimeMillis();
 
         logger.info("time: {}", end - start);
