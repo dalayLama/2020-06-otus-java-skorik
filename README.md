@@ -12,4 +12,5 @@ hw04-gc - Сравнение разных сборщиков мусора<br>
 hw05-aop - Автоматическое логирование<br>
 hw06-solid - Эмулятор банкомата<br>
 hw07-structural-patterns - Структурные паттерны<br>
-hw08-json-object-writer - Cвой json object writer
+hw08-json-object-writer - Cвой json object writer<br>
+hw09-jdbc - Самодельный ORM
