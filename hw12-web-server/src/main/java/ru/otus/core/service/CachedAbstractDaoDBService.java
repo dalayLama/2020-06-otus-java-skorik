@@ -2,6 +2,7 @@ package ru.otus.core.service;
 
 import ru.otus.cachehw.HwCache;
 
+import java.util.List;
 import java.util.Optional;
 
 public abstract class CachedAbstractDaoDBService<T, ID> implements DBService<T, ID> {
@@ -32,5 +33,10 @@ public abstract class CachedAbstractDaoDBService<T, ID> implements DBService<T, 
         ID id = service.save(model);
         cache.put(id, model);
         return id;
+    }
+
+    @Override
+    public List<? extends T> getAll() {
+        return service.getAll();
     }
 }

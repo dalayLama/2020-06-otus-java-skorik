@@ -8,7 +8,12 @@ import ru.otus.hibernate.exceptions.NotFoundEntityException;
 import ru.otus.hibernate.exceptions.NotNullIdException;
 import ru.otus.hibernate.exceptions.NullIdException;
 
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class AbstractHibernateDao<T extends HibernateModel<ID>, ID extends Serializable> implements Dao<T, ID> {
@@ -17,6 +22,17 @@ public abstract class AbstractHibernateDao<T extends HibernateModel<ID>, ID exte
 
     public AbstractHibernateDao(HibernateSessionManager hibernateSessionManager) {
         this.hibernateSessionManager = hibernateSessionManager;
+    }
+
+    @Override
+    public List<? extends T> findAll() {
+        CriteriaBuilder cb = getCurrentSession().getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(getClassEntity());
+        Root<T> rootEntry = cq.from(getClassEntity());
+        CriteriaQuery<T> all = cq.select(rootEntry);
+
+        TypedQuery<T> allQuery = getCurrentSession().createQuery(all);
+        return allQuery.getResultList();
     }
 
     @Override
