@@ -49,4 +49,9 @@ public abstract class AbstractDaoDBService<T, ID> implements DBService<T, ID> {
             return Optional.empty();
         }
     }
+
+    protected Dao<T, ID> getDao() {
+        return dao;
+    }
+
 }
