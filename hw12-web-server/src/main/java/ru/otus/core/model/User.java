@@ -44,7 +44,7 @@ public class User implements HibernateModel<Long> {
         }
         if (Objects.nonNull(dto.getPhones())) {
             List<Phone> phoneList = dto.getPhones().stream()
-                    .map(phoneDto -> new Phone(user, phoneDto.getNumber()))
+                    .map(phoneDto -> new Phone(user, phoneDto))
                     .collect(Collectors.toList());
             user.setPhones(phoneList);
         }

@@ -31,6 +31,12 @@ public class Phone {
         this.number = number;
     }
 
+    public Phone(User user, Dto dto) {
+        this.id = dto.getId();
+        this.user = user;
+        this.number = dto.getNumber();
+    }
+
     public Long getId() {
         return id;
     }
@@ -57,7 +63,17 @@ public class Phone {
 
     public static class Dto {
 
+        private Long id;
+
         private String number;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
 
         public String getNumber() {
             return number;
