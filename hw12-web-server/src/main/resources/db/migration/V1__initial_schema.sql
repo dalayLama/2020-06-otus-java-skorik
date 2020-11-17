@@ -1,7 +1,9 @@
 create table user (
     id bigint(20) not null auto_increment,
+    login varchar(255),
     name varchar(255),
-    age int(3)
+    age int(3),
+    password varchar(255)
 );
 
 create table addresses (
@@ -16,3 +18,5 @@ create table phones (
     _number varchar(255) not null,
     foreign key (id_user) references user(id)
 );
+
+insert into user (login, name, age, password) values ('u1', 'User', 20, '111');
