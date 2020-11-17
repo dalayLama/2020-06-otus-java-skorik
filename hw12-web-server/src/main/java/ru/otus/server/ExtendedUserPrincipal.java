@@ -17,7 +17,7 @@ public class ExtendedUserPrincipal extends AbstractLoginService.UserPrincipal {
         return userDbData;
     }
 
-    public UserPublicData getpublicUData() {
+    public UserPublicData getPublicUserData() {
         return new UserPublicData(userDbData);
     }
 

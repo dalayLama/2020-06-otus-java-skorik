@@ -39,4 +39,13 @@ public abstract class CachedAbstractDaoDBService<T, ID> implements DBService<T, 
     public List<? extends T> getAll() {
         return service.getAll();
     }
+
+    protected DBService<T, ID> getService() {
+        return service;
+    }
+
+    protected HwCache<ID, T> getCache() {
+        return cache;
+    }
+
 }

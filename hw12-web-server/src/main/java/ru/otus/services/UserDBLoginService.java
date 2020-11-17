@@ -8,11 +8,11 @@ import ru.otus.server.Roles;
 
 import java.util.Optional;
 
-public class UserDBServiceLoginService extends AbstractLoginService {
+public class UserDBLoginService extends AbstractLoginService {
 
     private final UserDBService userDao;
 
-    public UserDBServiceLoginService(UserDBService userDao) {
+    public UserDBLoginService(UserDBService userDao) {
         this.userDao = userDao;
     }
 

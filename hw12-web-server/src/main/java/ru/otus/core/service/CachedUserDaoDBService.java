@@ -3,10 +3,21 @@ package ru.otus.core.service;
 import ru.otus.cachehw.HwCache;
 import ru.otus.core.model.User;
 
-public class CachedUserDaoDBService extends CachedAbstractDaoDBService<User, Long> {
+import java.util.Optional;
 
-    public CachedUserDaoDBService(DBService<User, Long> userService, HwCache<Long, User> cache) {
+public class CachedUserDaoDBService extends CachedAbstractDaoDBService<User, Long> implements UserDBService {
+
+    public CachedUserDaoDBService(UserDBService userService, HwCache<Long, User> cache) {
         super(userService, cache);
     }
 
+    @Override
+    public Optional<User> findByLogin(String login) {
+        return getService().findByLogin(login);
+    }
+
+    @Override
+    protected UserDBService getService() {
+        return (UserDBService) super.getService();
+    }
 }
