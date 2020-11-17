@@ -50,4 +50,18 @@ public class Address {
     public void setStreet(String street) {
         this.street = street;
     }
+
+    public static class Dto {
+
+        private String street;
+
+        public String getStreet() {
+            return street;
+        }
+
+        public void setStreet(String street) {
+            this.street = street;
+        }
+    }
+
 }

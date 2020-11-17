@@ -54,4 +54,18 @@ public class Phone {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    public static class Dto {
+
+        private String number;
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+    }
+
 }
