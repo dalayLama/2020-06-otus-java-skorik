@@ -39,6 +39,7 @@ public class User implements HibernateModel<Long> {
         user.setName(dto.getName());
         user.setLogin(dto.getLogin());
         user.setPassword(dto.getPassword());
+        user.setAge(dto.getAge());
         if (Objects.nonNull(dto.getAddress())) {
             user.setAddress(new Address(user, dto.getAddress().getStreet()));
         }

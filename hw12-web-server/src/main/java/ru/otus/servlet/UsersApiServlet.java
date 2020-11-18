@@ -82,11 +82,11 @@ public class UsersApiServlet extends HttpServlet {
     }
 
     private String[] splitPatches(HttpServletRequest request) {
-        return request.getPathInfo().split("/");
+        return Objects.isNull(request.getPathInfo()) ? new String[0] : request.getPathInfo().split("/");
     }
 
     private boolean isAllUsers(String[] patches) {
-        return patches.length == 1;
+        return patches.length == 0;
     }
 
     private long extractIdFromRequest(String[] patches) {
