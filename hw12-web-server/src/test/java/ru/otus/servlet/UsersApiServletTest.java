@@ -65,7 +65,7 @@ public class UsersApiServletTest {
 
     @Test
     public void shouldReturnAllUsers() throws IOException, ServletException, URISyntaxException {
-        when(request.getPathInfo()).thenReturn("users");
+        when(request.getPathInfo()).thenReturn(null);
         when(userDBService.getAll()).thenReturn(userList);
 
         Path path = new File(getClass().getClassLoader().getResource("expectedUserList.json").toURI()).toPath();
@@ -81,7 +81,7 @@ public class UsersApiServletTest {
 
     @Test
     public void shouldReturnLookingForUser() throws URISyntaxException, IOException, ServletException {
-        when(request.getPathInfo()).thenReturn("users/1");
+        when(request.getPathInfo()).thenReturn("/1");
         when(userDBService.getModel(queryId)).thenReturn(Optional.of(userById));
 
         Path path = new File(getClass().getClassLoader().getResource("expectedUserById.json").toURI()).toPath();
@@ -97,7 +97,7 @@ public class UsersApiServletTest {
 
     @Test
     public void shouldReturnBadRequestForLookingForUser() throws URISyntaxException, IOException, ServletException {
-        when(request.getPathInfo()).thenReturn("users/1");
+        when(request.getPathInfo()).thenReturn("/1");
         when(userDBService.getModel(queryId)).thenReturn(Optional.empty());
 
         servlet.doGet(request, response);
