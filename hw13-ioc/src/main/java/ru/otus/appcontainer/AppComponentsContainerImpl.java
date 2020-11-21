@@ -23,6 +23,10 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
         processConfig(initialConfigClass);
     }
 
+    public AppComponentsContainerImpl(Class<?>... initialConfigClasses) {
+        processConfig(initialConfigClasses);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public <C> C getAppComponent(Class<C> componentClass) {
@@ -45,14 +49,22 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
         return (C) appComponentsByName.get(componentName);
     }
 
-    private void processConfig(Class<?> configClass) {
+    private void processConfig(Class<?>... configClasses) {
+        List<Configurator> configurators = new ArrayList<>();
+        for (Class<?> configClass : configClasses) {
+            configurators.add(createConfigurator(configClass));
+        }
+        configurators.sort(Comparator.comparingInt(Configurator::getOrder));
+        configurators.forEach(this::loadConfigurator);
+    }
+
+    private Configurator createConfigurator(Class<?> configClass) {
         checkConfigClass(configClass);
         Object objectConfigurator = createObjectConfigurator(configClass);
         int order = configClass.getAnnotation(AppComponentsContainerConfig.class).order();
 
         List<MethodConfig> configs = createMethodsConfigs(configClass);
-        Configurator configurator = new Configurator(objectConfigurator, order, configs);
-        loadConfigurator(configurator);
+        return new Configurator(objectConfigurator, order, configs);
     }
 
     private void checkConfigClass(Class<?> configClass) {
