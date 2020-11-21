@@ -33,6 +33,7 @@ allprojects {
             dependency("org.hamcrest:hamcrest-all:${Versions.hamcrest}")
             dependency("com.google.code.gson:gson:${Versions.gson}")
             dependency("org.flywaydb:flyway-core:${Versions.flyway}")
+            dependency("org.reflections:reflections:${Versions.reflections}")
         }
     }
 }

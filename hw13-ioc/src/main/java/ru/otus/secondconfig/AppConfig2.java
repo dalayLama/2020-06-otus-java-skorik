@@ -1,4 +1,4 @@
-package ru.otus.config2;
+package ru.otus.secondconfig;
 
 import ru.otus.appcontainer.api.AppComponent;
 import ru.otus.appcontainer.api.AppComponentsContainerConfig;

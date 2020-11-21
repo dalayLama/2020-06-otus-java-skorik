@@ -1,5 +1,8 @@
 package ru.otus.appcontainer;
 
+import org.reflections.Reflections;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
 import ru.otus.appcontainer.api.AppComponent;
 import ru.otus.appcontainer.api.AppComponentsContainer;
 import ru.otus.appcontainer.api.AppComponentsContainerConfig;
@@ -27,6 +30,12 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
         processConfig(initialConfigClasses);
     }
 
+    public AppComponentsContainerImpl(String path) {
+        Reflections reflections = new Reflections(path, new TypeAnnotationsScanner(), new SubTypesScanner());
+        Set<Class<?>> classes = reflections.getTypesAnnotatedWith(AppComponentsContainerConfig.class);
+        processConfig(classes);
+    }
+
     @SuppressWarnings("unchecked")
     @Override
     public <C> C getAppComponent(Class<C> componentClass) {
@@ -50,6 +59,10 @@ public class AppComponentsContainerImpl implements AppComponentsContainer {
     }
 
     private void processConfig(Class<?>... configClasses) {
+        processConfig(new ArrayList<>(Arrays.asList(configClasses)));
+    }
+
+    private void processConfig(Collection<Class<?>> configClasses) {
         List<Configurator> configurators = new ArrayList<>();
         for (Class<?> configClass : configClasses) {
             configurators.add(createConfigurator(configClass));
