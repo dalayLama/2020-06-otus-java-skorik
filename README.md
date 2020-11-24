@@ -15,4 +15,5 @@ hw07-structural-patterns - Структурные паттерны<br>
 hw08-json-object-writer - Cвой json object writer<br>
 hw09-jdbc - Самодельный ORM<br>
 hw10-jpql - Использование Hibernate<br>
-hw11-cache - Свой cache engine
+hw11-cache - Свой cache engine<br>
+hw15-executors - Последовательность чисел
