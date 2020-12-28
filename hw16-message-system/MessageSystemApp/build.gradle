@@ -1,0 +1,22 @@
+plugins {
+    id 'war'
+}
+
+sourceCompatibility = JavaVersion.VERSION_14
+targetCompatibility = JavaVersion.VERSION_14
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':hw16-message-system:MessageSystem')
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
+}
+
+tasks.withType(JavaCompile) {
+    options.with {
+        encoding = 'UTF-8'
+    }
+}
