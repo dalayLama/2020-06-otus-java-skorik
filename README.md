@@ -16,4 +16,5 @@ hw08-json-object-writer - Cвой json object writer<br>
 hw09-jdbc - Самодельный ORM<br>
 hw10-jpql - Использование Hibernate<br>
 hw11-cache - Свой cache engine<br>
+hw12-web-server - Веб-сервер<br>
 hw13-ioc - Свой IOC контейнер
