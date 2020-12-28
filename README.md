@@ -18,4 +18,5 @@ hw10-jpql - Использование Hibernate<br>
 hw11-cache - Свой cache engine<br>
 hw12-web-server - Веб-сервер<br>
 hw13-ioc - Свой IOC контейнер<br>
-hw14-cache - Веб-приложение на Spring MVC
+hw14-cache - Веб-приложение на Spring MVC<br>
+hw15-executors - Последовательность чисел
