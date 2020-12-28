@@ -33,6 +33,11 @@ allprojects {
             dependency("org.hamcrest:hamcrest-all:${Versions.hamcrest}")
             dependency("com.google.code.gson:gson:${Versions.gson}")
             dependency("org.flywaydb:flyway-core:${Versions.flyway}")
+            dependency("org.eclipse.jetty:jetty-server:${Versions.jetty}")
+            dependency("org.eclipse.jetty:jetty-webapp:${Versions.jetty}")
+            dependency("org.eclipse.jetty:jetty-security:${Versions.jetty}")
+            dependency("org.freemarker:freemarker:${Versions.freemarker}")
+
         }
     }
 }
