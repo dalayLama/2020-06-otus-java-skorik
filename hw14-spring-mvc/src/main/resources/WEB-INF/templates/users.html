@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Администрирование</title>
+</head>
+
+<body>
+<form id="add-user">
+    <p><strong>Имя</strong></p>
+    <p><input id="name" type="text" name="name" maxlength="25" size="40" value="" /></p>
+    <p><strong>Логин</strong></p>
+    <p><input id="login" type="text" name="login" maxlength="25" size="40" value="" /></p>
+    <p><strong>Пароль</strong></p>
+    <p><input id="password" type="password" name="password" maxlength="16" size="40" value="" /></p>
+    <p><strong>Возраст</strong></p>
+    <p><input id="age" type="number" name="age" max="190" value="" /></p>
+    <button type="submit">Добавить</button>
+</form>
+<h1>Список пользователей <button id="update">Обновить</button></h1>
+<table style="width: 400px" id="users-list">
+    <thead>
+        <tr>
+            <td style="width: 50px">Id</td>
+            <td style="width: 150px">Имя</td>
+            <td style="width: 100px">Возраст</td>
+            <td style="width: 100px">Логин</td>
+            <td style="width: 100px">Пароль</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">1</td>
+            <td th:text="${user.name}">Name</td>
+            <td th:text="${user.age}">27</td>
+            <td th:text="${user.login}">login</td>
+            <td th:text="${user.password}">pass</td>
+        </tr>
+    </tbody>
+</table>
+<script src="static/js/jquery-3.5.1.min.js"></script>
+<script src="static/js/api.js"></script>
+</body>
+</html>
